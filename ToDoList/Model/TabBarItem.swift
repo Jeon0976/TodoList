@@ -26,7 +26,7 @@ enum TabBarItem: CaseIterable {
         case .nowList:
             return (UIImage(systemName: "list.bullet.circle")!, UIImage(systemName: "list.bullet.circle.fill")!)
         case .longterm:
-            return (UIImage(systemName: "tray.full")!, UIImage(systemName: "tray.full.fill")!)
+            return (UIImage(systemName: "archivebox.circle")!, UIImage(systemName: "archivebox.circle.fill")!)
         }
     }
     

@@ -50,6 +50,7 @@
 		C594CD3829CC4323009D52CE /* TodoEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEditViewModel.swift; sourceTree = "<group>"; };
 		C594CD3B29CC44B5009D52CE /* LongtermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongtermViewController.swift; sourceTree = "<group>"; };
 		C594CD3D29CC44C0009D52CE /* LongtermViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongtermViewModel.swift; sourceTree = "<group>"; };
+		C594CD4029CC8E6B009D52CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C5C60DE829C870A600BD475B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C5C60DEC29C8748900BD475B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		C5C60DEE29C875E900BD475B /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 		C53DDF8729C169EC00E0CF73 = {
 			isa = PBXGroup;
 			children = (
+				C594CD4029CC8E6B009D52CE /* README.md */,
 				C5C60DE829C870A600BD475B /* .swiftlint.yml */,
 				C53DDF9229C169EC00E0CF73 /* ToDoList */,
 				C53DDF9129C169EC00E0CF73 /* Products */,
