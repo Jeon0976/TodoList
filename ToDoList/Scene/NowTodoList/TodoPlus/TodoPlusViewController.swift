@@ -24,11 +24,25 @@ final class TodoPlusViewController: UIViewController {
     let descriptionTodo = UITextView()
     let checkTodo = UIBarButtonItem()
     
+    var todo: TodoList?
+    var indexpath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         attribute()
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let task = todo {
+            navigationItem.title = "작업 변경"
+            todoTitle.text = task.todo
+            todoDate.text = task.date
+            
+        }
     }
     
     func bind(_ viewModel: TodoPlusViewModel) {

@@ -40,9 +40,11 @@ final class NowListCellView: UITableViewCell {
         case true:
             todoCheckImageView.image = UIImage(systemName: "checkmark.circle.fill")
             todoText.text = todo.todo
+            todoRoutine.text = todo.date
         case false:
             todoCheckImageView.image = UIImage(systemName: "circle")
             todoText.text = todo.todo
+            todoRoutine.text = todo.date
         }
     }
     
@@ -51,7 +53,6 @@ final class NowListCellView: UITableViewCell {
         backgroundColor = .systemBackground
         
         todoText.font = UIFont.systemFont(ofSize: 16, weight: .bold)
-        todoRoutine.text = "test Routine"
         todoRoutine.font = UIFont.systemFont(ofSize: 10, weight: .light)
     }
     

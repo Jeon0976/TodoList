@@ -14,7 +14,10 @@ struct NowListViewModel {
     
     // ViewModel -> View
     let datas: BehaviorRelay<[Task]>
-    let todoPlusViewPush: Driver<TodoPlusViewModel>
+    let pushTodoPlusView: Driver<TodoPlusViewModel>
+    
+    // ViewModel -> TodoPlusViewMdeol
+//    let pushEditTodoList: Driver<TodoPlusViewModel>
     
     // View -> ViewModel
     let makeTodoListButtonTapped = PublishRelay<Void>()
@@ -34,8 +37,13 @@ struct NowListViewModel {
             ])
         ])
         
-        self.todoPlusViewPush = makeTodoListButtonTapped
+        self.pushTodoPlusView = makeTodoListButtonTapped
             .map { return todoPlusViewModel }
             .asDriver(onErrorDriveWith: .empty())
+        
+//        self.pushEditTodoList = todoSelected
+//            .map({ IndexPath in
+//                <#code#>
+//            })
     }
 }

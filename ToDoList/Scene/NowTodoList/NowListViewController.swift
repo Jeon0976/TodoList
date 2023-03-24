@@ -44,16 +44,24 @@ final class NowListViewController: UIViewController {
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
-        viewModel.todoPlusViewPush
+        viewModel.pushTodoPlusView
             .drive(onNext: { viewModel in
                 let viewController = TodoPlusViewController()
                 viewController.bind(viewModel)
-                self.show(viewController, sender: true)
+                self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: disposeBag)
         
-        tableView.rx.itemSelected
-            .bind(to: viewModel.todoSelected)
+        // 위치 수정 필요??
+        Observable.zip(tableView.rx.modelSelected(TodoList.self), tableView.rx.itemSelected)
+            .bind { [weak self] (task, indexPath) in
+                let viewController = TodoPlusViewController()
+                let viewModel = TodoPlusViewModel()
+                viewController.todo = task
+                viewController.indexpath = indexPath
+                viewController.bind(viewModel)
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            }
             .disposed(by: disposeBag)
         
         makeTodoList.rx.tap
