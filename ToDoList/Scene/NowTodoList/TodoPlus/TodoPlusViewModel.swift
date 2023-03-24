@@ -13,7 +13,6 @@ struct TodoPlusViewModel {
     
     // ViewModel -> View
     
-    
     // View -> ViewModel
     
 }
