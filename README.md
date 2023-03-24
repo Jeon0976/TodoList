@@ -3,5 +3,5 @@
 - Create Cal, Todo, Project, AddTodo page)
 - Create TodoList TableView)
 #### 23.03.24
-- Create AddTodoPage) UI & AddTodoPageUILogic
+- Create AddTodoPage) UI & UILogic
 - Modify Others page) trivial UI 
