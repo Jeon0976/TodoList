@@ -19,7 +19,7 @@ final class TodoPlusViewController: UIViewController {
     let todoTitle = UITextField()
     let calIcon = UIImageView()
     let routineTodoIcon = UIImageView()
-    let todayTodo = UILabel()
+    let todoDate = UITextField()
     let descriptionIcon = UIImageView()
     let descriptionTodo = UITextView()
     let checkTodo = UIBarButtonItem()
@@ -43,11 +43,11 @@ final class TodoPlusViewController: UIViewController {
         
         setRoutine.rx.isOn
             .bind { [weak self] _ in
-                if self?.todayTodo.isHidden == false {
-                    self?.todayTodo.isHidden = true
+                if self?.todoDate.isHidden == false {
+                    self?.todoDate.isHidden = true
                     self?.routineTodoIcon.isHidden = false
                 } else {
-                    self?.todayTodo.isHidden = false
+                    self?.todoDate.isHidden = false
                     self?.routineTodoIcon.isHidden = true
                 }
             }
@@ -89,8 +89,8 @@ final class TodoPlusViewController: UIViewController {
         routineTodoIcon.isHidden = true
         
         // todayTodo
-        todayTodo.text = "2023-03-24"
-        todayTodo.isHidden = false
+        todoDate.text = "2023-03-24"
+        todoDate.isHidden = false
         
         // descriptionIcon
         descriptionIcon.image = UIImage(systemName: "newspaper")
@@ -108,7 +108,7 @@ final class TodoPlusViewController: UIViewController {
          setRoutine,
          calIcon,
          routineTodoIcon,
-         todayTodo,
+         todoDate,
          descriptionIcon,
          descriptionTodo
         ].forEach { view.addSubview($0) }
@@ -122,7 +122,7 @@ final class TodoPlusViewController: UIViewController {
         setRoutine.snp.makeConstraints {
             $0.top.equalTo(todoTitle.snp.bottom).offset(32)
             $0.trailing.equalToSuperview().inset(16)
-            $0.leading.equalTo(todayTodo.snp.trailing).offset(16)
+            $0.leading.equalTo(todoDate.snp.trailing).offset(16)
         }
 
         calIcon.snp.makeConstraints {
@@ -135,18 +135,18 @@ final class TodoPlusViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
 
-        todayTodo.snp.makeConstraints {
+        todoDate.snp.makeConstraints {
             $0.top.equalTo(todoTitle.snp.bottom).offset(32)
             $0.leading.equalTo(calIcon.snp.trailing).offset(16)
         }
 
         descriptionIcon.snp.makeConstraints {
-            $0.top.equalTo(todayTodo.snp.bottom).offset(32)
+            $0.top.equalTo(todoDate.snp.bottom).offset(32)
             $0.leading.equalToSuperview().inset(16)
         }
         
         descriptionTodo.snp.makeConstraints {
-            $0.top.equalTo(todayTodo.snp.bottom).offset(32)
+            $0.top.equalTo(todoDate.snp.bottom).offset(32)
             $0.leading.equalTo(descriptionIcon.snp.trailing).offset(16)
             $0.width.equalTo(view.safeAreaLayoutGuide).inset(32)
             $0.height.equalTo(view.safeAreaLayoutGuide).inset(16)
