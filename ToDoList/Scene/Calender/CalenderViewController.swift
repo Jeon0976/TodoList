@@ -24,7 +24,7 @@ final class CalenderViewController: UIViewController {
     }
     
     private func attribute() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray6
         navigationItem.title = "달력"
     }
     

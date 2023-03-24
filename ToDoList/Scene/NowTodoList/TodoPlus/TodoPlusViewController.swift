@@ -15,14 +15,14 @@ final class TodoPlusViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     
-//    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-//        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-//
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    let setRoutine = UISwitch()
+    let todoTitle = UITextField()
+    let calIcon = UIImageView()
+    let routineTodoIcon = UIImageView()
+    let todayTodo = UILabel()
+    let descriptionIcon = UIImageView()
+    let descriptionTodo = UITextView()
+    let checkTodo = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +32,124 @@ final class TodoPlusViewController: UIViewController {
     }
     
     func bind(_ viewModel: TodoPlusViewModel) {
+        descriptionTodo.rx.didBeginEditing
+            .bind { [weak self] _ in
+                if self?.descriptionTodo.textColor == .lightGray {
+                    self?.descriptionTodo.text = ""
+                    self?.descriptionTodo.textColor = .label
+                }
+            }
+            .disposed(by: disposeBag)
         
+        setRoutine.rx.isOn
+            .bind { [weak self] _ in
+                if self?.todayTodo.isHidden == false {
+                    self?.todayTodo.isHidden = true
+                    self?.routineTodoIcon.isHidden = false
+                } else {
+                    self?.todayTodo.isHidden = false
+                    self?.routineTodoIcon.isHidden = true
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        todoTitle.rx.text
+            .bind { [weak self] text in
+                if text == "" {
+                    self?.checkTodo.isEnabled = false
+                } else {
+                    self?.checkTodo.isEnabled = true
+                }
+            }
+            .disposed(by: disposeBag)
+
     }
     
     private func attribute() {
-        view.backgroundColor = .systemGray4
-        navigationController?.navigationBar.prefersLargeTitles = false
-        title = "작업 추가"
+        view.backgroundColor = .systemGray6
+        navigationItem.title = "작업 추가"
+        
+        // checkTodo
+        checkTodo.image = UIImage(systemName: "paperplane")
+        checkTodo.style = .done
+        checkTodo.isEnabled = false
+        navigationItem.rightBarButtonItem = checkTodo
+        
+        // todoTitle
+        todoTitle.placeholder = "TestTitle"
+        todoTitle.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        
+        // setRoutine
+        
+        // calIcon
+        calIcon.image = UIImage(systemName: "calendar")
+        
+        // routineTodoIcon
+        routineTodoIcon.image = UIImage(systemName: "repeat")
+        routineTodoIcon.isHidden = true
+        
+        // todayTodo
+        todayTodo.text = "2023-03-24"
+        todayTodo.isHidden = false
+        
+        // descriptionIcon
+        descriptionIcon.image = UIImage(systemName: "newspaper")
+        
+        // descriptionTodo
+        descriptionTodo.text = "TestDescription"
+        descriptionTodo.textColor = .lightGray
+        descriptionTodo.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        descriptionTodo.backgroundColor = .systemGray6
     }
     
     private func layout() {
         
+        [todoTitle,
+         setRoutine,
+         calIcon,
+         routineTodoIcon,
+         todayTodo,
+         descriptionIcon,
+         descriptionTodo
+        ].forEach { view.addSubview($0) }
+                        
+        todoTitle.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
+        }
+        
+        setRoutine.snp.makeConstraints {
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.leading.equalTo(todayTodo.snp.trailing).offset(16)
+        }
+
+        calIcon.snp.makeConstraints {
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
+            $0.leading.equalToSuperview().inset(16)
+        }
+
+        routineTodoIcon.snp.makeConstraints {
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
+            $0.centerX.equalToSuperview()
+        }
+
+        todayTodo.snp.makeConstraints {
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
+            $0.leading.equalTo(calIcon.snp.trailing).offset(16)
+        }
+
+        descriptionIcon.snp.makeConstraints {
+            $0.top.equalTo(todayTodo.snp.bottom).offset(32)
+            $0.leading.equalToSuperview().inset(16)
+        }
+        
+        descriptionTodo.snp.makeConstraints {
+            $0.top.equalTo(todayTodo.snp.bottom).offset(32)
+            $0.leading.equalTo(descriptionIcon.snp.trailing).offset(16)
+            $0.width.equalTo(view.safeAreaLayoutGuide).inset(32)
+            $0.height.equalTo(view.safeAreaLayoutGuide).inset(16)
+        }
     }
 }

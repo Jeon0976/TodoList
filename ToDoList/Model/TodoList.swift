@@ -9,5 +9,6 @@ import Foundation
 
 struct TodoList {
     var todo: String
+    var date: String
     var isDone: Bool
 }

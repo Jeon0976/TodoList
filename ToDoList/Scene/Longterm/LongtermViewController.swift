@@ -25,7 +25,7 @@ final class LongtermViewController: UIViewController {
     }
     
     private func attribute() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGray6
         navigationItem.title = "프로젝트"
     }
     

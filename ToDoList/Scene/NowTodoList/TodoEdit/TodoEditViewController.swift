@@ -27,7 +27,7 @@ final class TodoEditViewController: UIViewController {
     }
     
     private func attribute() {
-        
+        view.backgroundColor = .systemGray6
     }
     
     private func layout() {

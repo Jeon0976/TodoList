@@ -40,16 +40,16 @@ final class NowListViewController: UIViewController {
             return dataSource.sectionModels[index].header
         }
         
+        viewModel.datas.asDriver()
+            .drive(tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
         viewModel.todoPlusViewPush
             .drive(onNext: { viewModel in
                 let viewController = TodoPlusViewController()
                 viewController.bind(viewModel)
                 self.show(viewController, sender: true)
             })
-            .disposed(by: disposeBag)
-        
-        viewModel.datas.asDriver()
-            .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
         
         tableView.rx.itemSelected
@@ -63,11 +63,11 @@ final class NowListViewController: UIViewController {
     
     private func attribute() {
         navigationController?.navigationBar.prefersLargeTitles = false
-        navigationItem.title = "오늘 작업"
+        navigationItem.title = "작업"
         
         view.backgroundColor  = .systemGray6
 
-        makeTodoList.title = "추가"
+        makeTodoList.image = UIImage(systemName: "plus.circle")
         makeTodoList.style = .done
         
         navigationItem.setRightBarButton(makeTodoList, animated: true)

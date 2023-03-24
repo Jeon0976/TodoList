@@ -9,5 +9,11 @@ import RxSwift
 import RxCocoa
 
 struct TodoPlusViewModel {
+    let disposeBag = DisposeBag()
+    
+    // ViewModel -> View
+    
+    
+    // View -> ViewModel
     
 }

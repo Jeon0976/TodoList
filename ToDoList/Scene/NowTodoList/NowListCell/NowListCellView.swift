@@ -17,6 +17,7 @@ final class NowListCellView: UITableViewCell {
     let disposeBag = DisposeBag()
     
     let todoText = UILabel()
+    let todoRoutine = UILabel()
     let todoCheckImageView = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -48,12 +49,16 @@ final class NowListCellView: UITableViewCell {
     private func attribute() {
         selectionStyle = .none
         backgroundColor = .systemBackground
+        
+        todoText.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        todoRoutine.text = "test Routine"
+        todoRoutine.font = UIFont.systemFont(ofSize: 10, weight: .light)
     }
     
     private func layout() {
 //        contentView.layer.cornerRadius = 10
         
-        [todoText, todoCheckImageView].forEach {
+        [todoText, todoCheckImageView, todoRoutine].forEach {
             contentView.addSubview($0)
         }
         
@@ -64,7 +69,13 @@ final class NowListCellView: UITableViewCell {
         
         todoText.snp.makeConstraints {
             $0.leading.equalTo(todoCheckImageView.snp.trailing).offset(16.0)
-            $0.top.bottom.equalToSuperview().inset(16.0)
+            $0.top.equalToSuperview().inset(8.0)
+        }
+        
+        todoRoutine.snp.makeConstraints {
+            $0.leading.equalTo(todoCheckImageView.snp.trailing).offset(16.0)
+            $0.top.equalTo(todoText.snp.bottom)
+            $0.bottom.equalToSuperview().inset(8.0)
         }
     }
 }

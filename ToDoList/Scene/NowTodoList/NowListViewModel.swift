@@ -25,12 +25,12 @@ struct NowListViewModel {
         
         datas = BehaviorRelay<[Task]>(value: [
             Task(header: "섹션 테스트 1", items: [
-                TodoList(todo: "Test", isDone: false),
-                TodoList(todo: "Test2", isDone: false)
+                TodoList(todo: "Test", date: "test", isDone: false),
+                TodoList(todo: "Test2", date: "test", isDone: false)
             ]),
             Task(header: "섹션 테스트 2", items: [
-                TodoList(todo: "Test", isDone: false),
-                TodoList(todo: "Test2", isDone: false)
+                TodoList(todo: "Test", date: "test", isDone: false),
+                TodoList(todo: "Test2", date: "test", isDone: false)
             ])
         ])
         
