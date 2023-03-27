@@ -9,6 +9,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import SnapKit
 
 final class LongtermCellView: UITableViewCell {
     static let identifier = "LongtermCellView"

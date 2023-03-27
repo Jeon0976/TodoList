@@ -13,10 +13,14 @@ struct LongtermViewModel {
     
     // ViewModel -> View
     let cellData: Driver<[Longterm]>
+    let pushLongtermPlusView: Driver<LongtermPlusViewModel>
     
     // View -> ViewModel
+    let makeLongtermButtonTapped = PublishRelay<Void>()
     
     init() {
+        let longtermPlusViewmodel = LongtermPlusViewModel()
+        
         let testData = BehaviorRelay<[Longterm]>(value: [
             Longterm(projectName: "Test Project1", term: "2033-33-33~2033-22-33"),
             Longterm(projectName: "Test Porject2", term: "2022-22-22~2032-22-44")
@@ -24,5 +28,9 @@ struct LongtermViewModel {
         
         self.cellData = testData
             .asDriver()
+        
+        self.pushLongtermPlusView = makeLongtermButtonTapped
+            .map{ return longtermPlusViewmodel }
+            .asDriver(onErrorDriveWith: .empty())
     }
 }

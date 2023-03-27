@@ -46,36 +46,6 @@ final class TodoPlusViewController: UIViewController {
     }
     
     func bind(_ viewModel: TodoPlusViewModel) {
-        descriptionTodo.rx.didBeginEditing
-            .bind { [weak self] _ in
-                if self?.descriptionTodo.textColor == .lightGray {
-                    self?.descriptionTodo.text = ""
-                    self?.descriptionTodo.textColor = .label
-                }
-            }
-            .disposed(by: disposeBag)
-        
-        setRoutine.rx.isOn
-            .bind { [weak self] _ in
-                if self?.todoDate.isHidden == false {
-                    self?.todoDate.isHidden = true
-                    self?.routineTodoIcon.isHidden = false
-                } else {
-                    self?.todoDate.isHidden = false
-                    self?.routineTodoIcon.isHidden = true
-                }
-            }
-            .disposed(by: disposeBag)
-        
-        todoTitle.rx.text
-            .bind { [weak self] text in
-                if text == "" {
-                    self?.checkTodo.isEnabled = false
-                } else {
-                    self?.checkTodo.isEnabled = true
-                }
-            }
-            .disposed(by: disposeBag)
 
     }
     
@@ -92,8 +62,28 @@ final class TodoPlusViewController: UIViewController {
         // todoTitle
         todoTitle.placeholder = "TestTitle"
         todoTitle.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        todoTitle.rx.text
+            .bind { [weak self] text in
+                if text == "" {
+                    self?.checkTodo.isEnabled = false
+                } else {
+                    self?.checkTodo.isEnabled = true
+                }
+            }
+            .disposed(by: disposeBag)
         
         // setRoutine
+        setRoutine.rx.isOn
+            .bind { [weak self] _ in
+                if self?.todoDate.isHidden == false {
+                    self?.todoDate.isHidden = true
+                    self?.routineTodoIcon.isHidden = false
+                } else {
+                    self?.todoDate.isHidden = false
+                    self?.routineTodoIcon.isHidden = true
+                }
+            }
+            .disposed(by: disposeBag)
         
         // calIcon
         calIcon.image = UIImage(systemName: "calendar")
@@ -114,56 +104,66 @@ final class TodoPlusViewController: UIViewController {
         descriptionTodo.textColor = .lightGray
         descriptionTodo.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         descriptionTodo.backgroundColor = .systemGray6
+        
+        descriptionTodo.rx.didBeginEditing
+            .bind { [weak self] _ in
+                if self?.descriptionTodo.textColor == .lightGray {
+                    self?.descriptionTodo.text = ""
+                    self?.descriptionTodo.textColor = .label
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     private func layout() {
         
-        [todoTitle,
-         setRoutine,
-         calIcon,
-         routineTodoIcon,
-         todoDate,
-         descriptionIcon,
-         descriptionTodo
+        [
+            todoTitle,
+            setRoutine,
+            calIcon,
+            routineTodoIcon,
+            todoDate,
+            descriptionIcon,
+            descriptionTodo
         ].forEach { view.addSubview($0) }
-                        
+        
         todoTitle.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16)
-            $0.leading.equalToSuperview().inset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(16.0)
+            $0.leading.equalToSuperview().inset(16.0)
+            $0.trailing.equalToSuperview().inset(16.0)
         }
         
         setRoutine.snp.makeConstraints {
-            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
-            $0.trailing.equalToSuperview().inset(16)
-            $0.leading.equalTo(todoDate.snp.trailing).offset(16)
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32.0)
+            $0.trailing.equalToSuperview().inset(16.0)
+            $0.leading.equalTo(todoDate.snp.trailing).offset(16.0)
         }
 
         calIcon.snp.makeConstraints {
-            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32.0)
+            $0.leading.equalToSuperview().inset(16.0)
         }
 
         routineTodoIcon.snp.makeConstraints {
-            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32.0)
             $0.centerX.equalToSuperview()
         }
 
         todoDate.snp.makeConstraints {
-            $0.top.equalTo(todoTitle.snp.bottom).offset(32)
-            $0.leading.equalTo(calIcon.snp.trailing).offset(16)
+            $0.top.equalTo(todoTitle.snp.bottom).offset(32.0)
+            $0.leading.equalTo(calIcon.snp.trailing).offset(16.0)
         }
 
         descriptionIcon.snp.makeConstraints {
-            $0.top.equalTo(todoDate.snp.bottom).offset(32)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalTo(todoDate.snp.bottom).offset(16.0)
+            $0.leading.equalToSuperview().inset(16.0)
         }
         
         descriptionTodo.snp.makeConstraints {
-            $0.top.equalTo(todoDate.snp.bottom).offset(32)
-            $0.leading.equalTo(descriptionIcon.snp.trailing).offset(16)
-            $0.width.equalTo(view.safeAreaLayoutGuide).inset(32)
-            $0.height.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.top.equalTo(todoDate.snp.bottom).offset(16.0)
+            $0.leading.equalTo(descriptionIcon.snp.trailing).offset(16.0)
+            $0.width.equalTo(view.safeAreaLayoutGuide).inset(32.0)
+            $0.height.equalTo(view.safeAreaLayoutGuide).inset(16.0)
         }
     }
 }

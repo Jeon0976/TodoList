@@ -38,6 +38,17 @@ final class LongtermViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        makeLongtermTodo.rx.tap
+            .bind(to: viewModel.makeLongtermButtonTapped)
+            .disposed(by: disposeBag)
+        
+        viewModel.pushLongtermPlusView
+            .drive(onNext: { viewModel in 
+                let viewController = LongtermPlusViewController()
+                viewController.bind(viewModel)
+                self.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func attribute() {

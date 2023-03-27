@@ -31,6 +31,6 @@ class RootTabViewController: UITabBarController {
     }
     
     private func setupTabBar() {
-        tabBar.backgroundColor = .systemGray6
+        tabBar.backgroundColor = .systemGray5
     }
 }
