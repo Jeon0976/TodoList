@@ -70,11 +70,9 @@ final class NowListViewController: UIViewController {
     }
     
     private func attribute() {
-        navigationController?.navigationBar.prefersLargeTitles = false
+        view.backgroundColor  = .systemGray6
         navigationItem.title = "작업"
         
-        view.backgroundColor  = .systemGray6
-
         makeTodoList.image = UIImage(systemName: "plus.circle")
         makeTodoList.style = .done
         

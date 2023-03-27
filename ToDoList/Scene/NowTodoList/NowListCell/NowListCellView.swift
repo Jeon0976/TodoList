@@ -18,7 +18,7 @@ final class NowListCellView: UITableViewCell {
     
     let todoText = UILabel()
     let todoRoutine = UILabel()
-    let todoCheckImageView = UIImageView()
+    let todoCheck = UIButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,11 +38,11 @@ final class NowListCellView: UITableViewCell {
     func setData(_ todo: TodoList) {
         switch todo.isDone {
         case true:
-            todoCheckImageView.image = UIImage(systemName: "checkmark.circle.fill")
+            todoCheck.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             todoText.text = todo.todo
             todoRoutine.text = todo.date
         case false:
-            todoCheckImageView.image = UIImage(systemName: "circle")
+            todoCheck.setImage(UIImage(systemName: "circle"), for: .normal)
             todoText.text = todo.todo
             todoRoutine.text = todo.date
         }
@@ -59,22 +59,22 @@ final class NowListCellView: UITableViewCell {
     private func layout() {
 //        contentView.layer.cornerRadius = 10
         
-        [todoText, todoCheckImageView, todoRoutine].forEach {
+        [todoText, todoCheck, todoRoutine].forEach {
             contentView.addSubview($0)
         }
         
-        todoCheckImageView.snp.makeConstraints {
+        todoCheck.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16.0)
             $0.top.bottom.equalToSuperview().inset(16.0)
         }
         
         todoText.snp.makeConstraints {
-            $0.leading.equalTo(todoCheckImageView.snp.trailing).offset(16.0)
+            $0.leading.equalTo(todoCheck.snp.trailing).offset(16.0)
             $0.top.equalToSuperview().inset(8.0)
         }
         
         todoRoutine.snp.makeConstraints {
-            $0.leading.equalTo(todoCheckImageView.snp.trailing).offset(16.0)
+            $0.leading.equalTo(todoCheck.snp.trailing).offset(16.0)
             $0.top.equalTo(todoText.snp.bottom)
             $0.bottom.equalToSuperview().inset(8.0)
         }

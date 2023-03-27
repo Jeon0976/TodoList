@@ -6,3 +6,5 @@
 - Create TodoPlusView) UI & UILogic
 - Modify Others page) trivial UI 
 - Modify NowListView) ItemSelected시 '작업 추가' -> '작업 변경' 으로 수정
+#### 23.03.27
+- Create LongtermView & Cell) UI 
