@@ -17,5 +17,4 @@ struct Longterm {
 struct Detail {
     var num: String
     var detailName: String
-    var detailDetail: String
 }

@@ -30,7 +30,7 @@ struct LongtermViewModel {
             .asDriver()
         
         self.pushLongtermPlusView = makeLongtermButtonTapped
-            .map{ return longtermPlusViewmodel }
+            .map { return longtermPlusViewmodel }
             .asDriver(onErrorDriveWith: .empty())
     }
 }

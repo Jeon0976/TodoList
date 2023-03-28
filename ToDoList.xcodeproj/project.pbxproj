@@ -24,6 +24,8 @@
 		C594CD3429CC28C9009D52CE /* TodoPlusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594CD3329CC28C9009D52CE /* TodoPlusViewModel.swift */; };
 		C594CD3C29CC44B5009D52CE /* LongtermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594CD3B29CC44B5009D52CE /* LongtermViewController.swift */; };
 		C594CD3E29CC44C0009D52CE /* LongtermViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C594CD3D29CC44C0009D52CE /* LongtermViewModel.swift */; };
+		C5AA678A29D319E1002C7FC8 /* LongtermPlusCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA678929D319E1002C7FC8 /* LongtermPlusCellView.swift */; };
+		C5AA678C29D319EE002C7FC8 /* LongtermPlusCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AA678B29D319EE002C7FC8 /* LongtermPlusCellModel.swift */; };
 		C5C60DE429C8702900BD475B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C5C60DE329C8702900BD475B /* RxCocoa */; };
 		C5C60DE629C8702900BD475B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C5C60DE529C8702900BD475B /* RxSwift */; };
 		C5C60DE929C870A600BD475B /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C5C60DE829C870A600BD475B /* .swiftlint.yml */; };
@@ -57,6 +59,8 @@
 		C594CD3B29CC44B5009D52CE /* LongtermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongtermViewController.swift; sourceTree = "<group>"; };
 		C594CD3D29CC44C0009D52CE /* LongtermViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongtermViewModel.swift; sourceTree = "<group>"; };
 		C594CD4029CC8E6B009D52CE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C5AA678929D319E1002C7FC8 /* LongtermPlusCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongtermPlusCellView.swift; sourceTree = "<group>"; };
+		C5AA678B29D319EE002C7FC8 /* LongtermPlusCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongtermPlusCellModel.swift; sourceTree = "<group>"; };
 		C5C60DE829C870A600BD475B /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C5C60DEC29C8748900BD475B /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		C5C60DEE29C875E900BD475B /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 			children = (
 				C56DB92529D1B6A2008C522C /* LongtermPlusViewModel.swift */,
 				C56DB92329D1B696008C522C /* LongtermPlusViewController.swift */,
+				C5AA678D29D319F0002C7FC8 /* LongtermCell */,
 			);
 			path = LongtermPlus;
 			sourceTree = "<group>";
@@ -150,6 +155,15 @@
 				C56DB92729D1B6A9008C522C /* LongtermPlus */,
 			);
 			path = Longterm;
+			sourceTree = "<group>";
+		};
+		C5AA678D29D319F0002C7FC8 /* LongtermCell */ = {
+			isa = PBXGroup;
+			children = (
+				C5AA678B29D319EE002C7FC8 /* LongtermPlusCellModel.swift */,
+				C5AA678929D319E1002C7FC8 /* LongtermPlusCellView.swift */,
+			);
+			path = LongtermCell;
 			sourceTree = "<group>";
 		};
 		C5C60DEA29C873F900BD475B /* Scene */ = {
@@ -323,11 +337,13 @@
 				C56DB91D29D1AD55008C522C /* LongtermCellView.swift in Sources */,
 				C5C60DF129C875F400BD475B /* NowListViewController.swift in Sources */,
 				C594CD3C29CC44B5009D52CE /* LongtermViewController.swift in Sources */,
+				C5AA678C29D319EE002C7FC8 /* LongtermPlusCellModel.swift in Sources */,
 				C53DDF9829C169EC00E0CF73 /* RootTabViewController.swift in Sources */,
 				C53DDF9429C169EC00E0CF73 /* AppDelegate.swift in Sources */,
 				C5C60DED29C8748900BD475B /* TabBarItem.swift in Sources */,
 				C594CD3429CC28C9009D52CE /* TodoPlusViewModel.swift in Sources */,
 				C5C60E0429C97F0D00BD475B /* NowListCellModel.swift in Sources */,
+				C5AA678A29D319E1002C7FC8 /* LongtermPlusCellView.swift in Sources */,
 				C56DB92429D1B696008C522C /* LongtermPlusViewController.swift in Sources */,
 				C5C60DF829C880D500BD475B /* NowListViewModel.swift in Sources */,
 				C56DB92229D1AFA9008C522C /* Longterm.swift in Sources */,

@@ -10,6 +10,6 @@
 - Create LongtermView & Cell) UI 
 - Create LongtermPlusView) UI
 - Next Todo:
-    - 1. table click시 todo check 상태 변경
-    - 2. table swipe Action(수정 삭제) 추가
-    - 3. LongtermPlusView Detail Table View 추가
+    1. table click시 todo check 상태 변경
+    2. table swipe Action(수정 삭제) 추가
+    3. LongtermPlusView Detail Table View 추가
