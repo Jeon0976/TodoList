@@ -40,6 +40,10 @@ final class NowListViewController: UIViewController {
             return dataSource.sectionModels[index].header
         }
         
+        dataSource.canEditRowAtIndexPath = { _, _ in
+            return true
+        }
+        
         viewModel.datas.asDriver()
             .drive(tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
@@ -51,18 +55,29 @@ final class NowListViewController: UIViewController {
                 self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: disposeBag)
-        
-        // 위치 수정 필요??
-        Observable.zip(tableView.rx.modelSelected(TodoList.self), tableView.rx.itemSelected)
-            .bind { [weak self] (task, indexPath) in
-                let viewController = TodoPlusViewController()
-                let viewModel = TodoPlusViewModel()
-                viewController.todo = task
-                viewController.indexpath = indexPath
-                viewController.bind(viewModel)
-                self?.navigationController?.pushViewController(viewController, animated: true)
-            }
+//
+//        tableView.rx.itemDeleted
+//            .withUnretained(self)
+//            .bind { section, indexPath in
+//
+//
+//            }
+        tableView.rx.itemSelected
+            .asObservable()
+            .bind(onNext: { indexPath in
+                viewModel.todoSelected
+            })
             .disposed(by: disposeBag)
+//        Observable.zip(tableView.rx.modelSelected(TodoList.self), tableView.rx.itemSelected)
+//            .bind { [weak self] (task, indexPath) in
+//                let viewController = TodoPlusViewController()
+//                let viewModel = TodoPlusViewModel()
+//                viewController.todo = task
+//                viewController.indexpath = indexPath
+//                viewController.bind(viewModel)
+//                self?.navigationController?.pushViewController(viewController, animated: true)
+//            }
+//            .disposed(by: disposeBag)
         
         makeTodoList.rx.tap
             .bind(to: viewModel.makeTodoListButtonTapped)

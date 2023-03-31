@@ -18,7 +18,7 @@ final class NowListCellView: UITableViewCell {
     
     let todoText = UILabel()
     let todoRoutine = UILabel()
-    let todoCheck = UIButton()
+    let todoCheck = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -38,11 +38,12 @@ final class NowListCellView: UITableViewCell {
     func setData(_ todo: TodoList) {
         switch todo.isDone {
         case true:
-            todoCheck.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+
+            todoCheck.image = UIImage(systemName: "checkmark.circle.fill")
             todoText.text = todo.todo
             todoRoutine.text = todo.date
         case false:
-            todoCheck.setImage(UIImage(systemName: "circle"), for: .normal)
+            todoCheck.image = UIImage(systemName: "circle")
             todoText.text = todo.todo
             todoRoutine.text = todo.date
         }
