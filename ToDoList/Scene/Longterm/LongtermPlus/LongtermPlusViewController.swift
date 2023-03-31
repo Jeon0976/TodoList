@@ -31,7 +31,17 @@ final class LongtermPlusViewController: UIViewController {
     }
     
     func bind(_ viewModel: LongtermPlusViewModel) {
-        
+        viewModel.cellData
+            .drive(descriptionTable.rx.items) { tableView, row, data in
+                let cell = tableView.dequeueReusableCell(
+                    withIdentifier: LongtermPlusCellView.identifier,
+                    for: IndexPath(row: row, section: 0)
+                ) as? LongtermPlusCellView
+                cell?.setData(data)
+                
+                return cell ?? UITableViewCell()
+                
+            }.disposed(by: disposeBag)
     }
     
     private func attribute() {
@@ -53,12 +63,16 @@ final class LongtermPlusViewController: UIViewController {
         
         // longtermDate
         longtermDate.text = "2023-02-22 ~ 2033-23-14"
-
+        
         // descriptionIcon
         descriptionIcon.image = UIImage(systemName: "wallet.pass")
         
         // descriptionTable
-        descriptionTable.backgroundColor = .red
+        descriptionTable.backgroundColor = .clear
+        descriptionTable.register(
+            LongtermPlusCellView.self,
+            forCellReuseIdentifier: LongtermPlusCellView.identifier
+        )
         
         // descriptionPlus
         var attText = AttributedString.init("세부사항 추가하기")
@@ -71,6 +85,7 @@ final class LongtermPlusViewController: UIViewController {
         descriptionPlus.configuration?.cornerStyle = .capsule
         descriptionPlus.configuration?.attributedTitle = attText
         descriptionPlus.configuration?.imagePadding = 15
+        
     }
     
     private func layout() {

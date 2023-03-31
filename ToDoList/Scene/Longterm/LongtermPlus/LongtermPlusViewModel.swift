@@ -15,5 +15,14 @@ struct LongtermPlusViewModel {
     let cellData: Driver<[Detail]>
     // View -> ViewModel
     
-    
+    init() {
+        let mockData = BehaviorRelay<[Detail]>(value: [
+            Detail(num: "1. ", detailName: "테스트 하기"),
+            Detail(num: "2. ", detailName: "테스트 확인하기")
+        ])
+        
+        self.cellData = mockData
+            .asDriver()
+        
+    }
 }

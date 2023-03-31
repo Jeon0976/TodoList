@@ -32,6 +32,11 @@ final class LongtermPlusCellView: UITableViewCell {
         
     }
     
+    func setData(_ detail:Detail) {
+        number.text = detail.num
+        title.text = detail.detailName
+    }
+    
     private func attribute() {
         selectionStyle = .none
         backgroundColor = .systemBackground
