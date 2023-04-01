@@ -22,3 +22,8 @@ extension Task: SectionModelType {
         self.items = items
     }
 }
+
+var mockData:[Task] = [
+    Task(header: "🔁 반복 작업", items: mockRoutineTodo),
+    Task(header: "▶️ 단기 작업", items: mockDayTodo)
+]
